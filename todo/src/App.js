@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { TodoBanner } from "./TodoBanner";
 import { TodoCreater } from "./TodoCreater";
 import { TodoRow } from "./TodoRow";
+import { VisibilityControl } from "./VisibilityControl";
 
 export default class App extends Component {
 
@@ -13,6 +14,7 @@ export default class App extends Component {
                         {action: "Study", done: false},
                         {action: "Call Parents", done: false},
                         {action: "Go for a jog", done: false}],
+            showCompleted: true
         }
     }
 
@@ -34,8 +36,8 @@ export default class App extends Component {
             this.state.todoItems.map(item => item.action === todo.action ? {...item, done: !item.done } : item)
         });
 
-    todoTableRows = () =>
-        this.state.todoItems.map(item =>
+    todoTableRows = (doneValue) =>
+        this.state.todoItems.filter(item => item.done === doneValue).map(item =>
             <TodoRow key={ item.action } item={ item } callback={ this.toggleTodo }/>
         );
 
@@ -44,17 +46,34 @@ export default class App extends Component {
             <TodoBanner name={this.state.userName} tasks={ this.state.todoItems } />
             <div className="container-fluid">
                 <TodoCreater callback={ this.createNewTodo } />
+                <table className="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Done</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.todoTableRows(false) }
+                    </tbody>
+                </table>
+                <div className="bg-secondary text-white text-center p-2">
+                    <VisibilityControl description="Completed Tasks"
+                        isChecked={this.state.showCompleted}
+                        callback={(checked) =>
+                            this.setState({ showCompleted: checked})
+                        }
+                    />
+                </div>
+
+                { this.state.showCompleted &&
                     <table className="table table-striped table-bordered">
                         <thead>
-                            <tr>
-                                <th>Description</th>
-                                <th>Done</th>
-                            </tr>
+                            <tr><th>Description</th><th>Done</th></tr>
                         </thead>
-                        <tbody>
-                            { this.todoTableRows() }
-                        </tbody>
+                        <tbody>{ this.todoTableRows(true) }</tbody>
                     </table>
+                }
             </div>
         </div>
 }
