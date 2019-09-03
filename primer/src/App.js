@@ -42,7 +42,7 @@ export default class App extends Component {
 //                                Click Me
 //                            </button>
 //                        </td>
-//                    </tr>
+//                    </tr>:
 //                </tfoot>
 //            </table>
 
