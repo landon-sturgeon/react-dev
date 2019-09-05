@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../data/ActionCreators";
+import { loadData } from "../data/ActionCreaters";
 import { DataTypes } from "../data/Types";
 import { Shop } from "./Shop";
 
-const mapStateToProps = (dataBase) => ({
+const mapStateToProps = (dataStore) => ({
     ...dataStore
 })
 
