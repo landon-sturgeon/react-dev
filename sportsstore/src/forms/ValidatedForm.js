@@ -23,14 +23,14 @@ export class ValidatedForm extends Component {
             return newState;
         }, () => {
             if (Object.keys(this.state.validationErrors).length === 0) {
-                const data = Object.assig( ...Object.entries(this.formElements)
+                const data = Object.assign(...Object.entries(this.formElements)
                     .map(e => ({[e[0]]: e[1].value})) )
                 this.props.submitCallback(data);
             }
         });
     }
 
-    registerReg = (element) => {
+    registerRef = (element) => {
         if (element !== null) {
             this.formElements[element.name] = element;
         }
@@ -42,7 +42,8 @@ export class ValidatedForm extends Component {
             <div className="form-group" key={ modelItem.label }>
                 <label>{ modelItem.label }</label>
                 <ValidationError errors={ this.state.validationErrors[name] } />
-                <input className="form-control" name={ ...modelItem.attrs } />
+                <input className="form-control" name={ name } ref={ this.registerRef }
+                    { ...this.props.defaultAttrs } { ...modelItem.attrs } />
             </div>
         )
     }
