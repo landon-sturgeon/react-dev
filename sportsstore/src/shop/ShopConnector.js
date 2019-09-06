@@ -1,20 +1,27 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../data/ActionCreaters";
+import { loadData, placeOrder } from "../data/ActionCreaters";
 import { DataTypes } from "../data/Types";
 import { Shop } from "./Shop";
 import { addToCart, updateCartQuantity, removeFromCart, clearCart }
     from "../data/CartActionCreators";
 import { CartDetails } from "./CartDetail";
 import { DataGetter } from "../data/DataGetter";
+import { Checkout } from "./Checkout";
+import { Thanks } from "./Thanks";
 
 const mapStateToProps = (dataStore) => ({
     ...dataStore
 })
 
 const mapDispatchToProps = {
-    loadData, addToCart, updateCartQuantity, removeFromCart, clearCart
+    loadData,
+    addToCart,
+    updateCartQuantity,
+    removeFromCart,
+    clearCart,
+    placeOrder
 }
 
 export const ShopConnector = connect(mapStateToProps, mapDispatchToProps) (
@@ -32,6 +39,10 @@ export const ShopConnector = connect(mapStateToProps, mapDispatchToProps) (
                 <Route path="/shop/cart" render={ (routeProps) =>
                     <CartDetails { ...this.props }{ ...routeProps } />
                 } />
+                <Route path="/shop/checkout" render={ routeProps =>
+                        <Checkout { ...this.props } { ...routeProps } /> } />
+                <Route path="/shop/thanks" render={ routeProps =>
+                        <Thanks { ...this.props } { ...routeProps } /> } />
                 <Redirect to="/shop/products/all/1" />
             </Switch>
         }
