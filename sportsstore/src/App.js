@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SportsStoreDataStore } from "./data/DataStore";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-import { ShopConnector } from "./shop/ShopConnector";
+import { ShopConnector } from "./connectors/ShopConnector";
 import './App.css';
 
 export default class App extends Component {
