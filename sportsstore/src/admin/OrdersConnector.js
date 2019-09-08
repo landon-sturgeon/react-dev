@@ -9,7 +9,7 @@ const vars = {
 export const OrdersConnector = graphql(ordersSummaryQuery,
     {
         options: (props) => ({ variables: vars }),
-        props: ({ data: { loading, orders, refectch }}) => ({
+        props: ({ data: { loading, orders, refetch }}) => ({
             totalSize: loading ? 0 : orders.totalSize,
             orders: loading ? []: orders.orders,
             currentPage: vars.page,
