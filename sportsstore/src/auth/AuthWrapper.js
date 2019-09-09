@@ -5,7 +5,7 @@ export const authWrapper = (WrappedComponent) =>
     class extends Component {
         render = () =>
             <AuthContext.Consumer>
-                { context = >
+                { context =>
                     <WrappedComponent { ...this.props } { ...context } />
                 }
             </AuthContext.Consumer>
