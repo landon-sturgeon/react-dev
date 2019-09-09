@@ -1,10 +1,11 @@
-import { graphql, compose } from "react-apollo";
+import { graphql } from "react-apollo";
+import * as compose from 'lodash.flowright';
 import { ProductsTable } from "./ProductsTable";
 import { productsList } from "./clientQueries";
 import { deleteProduct } from "./clientMutations";
 
 const vars = {
-    page1, pageSize: 10, sort: "id"
+    page: 1, pageSize: 10, sort: "id"
 }
 
 export const ConnectedProducts = compose(
@@ -36,10 +37,9 @@ export const ConnectedProducts = compose(
                     data.products.totalSize = data.products.totalSize - 1;
                     cache.writeQuery({ ...queryDetails, data });
                 }
-            }
         },
         props: ({ mutate }) => ({
-            deleteProduct: (id) => mutat({ variables: { id }})
+            deleteProduct: (id) => mutate({ variables: { id }})
         })
     })
 )(ProductsTable);

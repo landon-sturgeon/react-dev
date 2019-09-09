@@ -31,7 +31,9 @@ export class ProductsTable extends Component {
                 </tbody>
             </table>
             <div className="text-center">
-
+                <Link to="/admin/products/create" className="btn btn-primary">
+                    Create Product
+                </Link>
             </div>
         </div>
 }

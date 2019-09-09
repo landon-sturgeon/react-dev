@@ -18,7 +18,7 @@ export class ProductCreator extends Component {
         if (this.props.mode === "edit") {
             this.mutation = updateProduct;
             this.formModel = [ { label: "Id", attrs: { disabled: true}},
-                    ... this.formModel]
+                    ...this.formModel]
                 .map(item => ({ ...item, attrs: { ...item.attrs,
                     defaultValue: this.props.product[item.label.toLowerCase()]} }));
         }
@@ -35,7 +35,7 @@ export class ProductCreator extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div classNAme="navbar-brand">SPORTS STORE</div>
+                    <div className="navbar-brand">SPORTS STORE</div>
                 </div>
                 <div className="row">
                     <div className="col m-2">

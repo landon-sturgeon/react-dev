@@ -10,7 +10,7 @@ export class ProductEditor extends Component {
             { ({ loading, data }) => {
                 if (!loading) {
                     return(
-                        <ProductCreateor { ...this.props } product={ data.product }
+                        <ProductCreator { ...this.props } product={ data.product }
                             mode="edit" />
                     )
                 }
