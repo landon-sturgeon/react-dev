@@ -38,7 +38,7 @@ createServer();
 
 app.use(cors());
 app.use(jsonServer.bodyParser);
-app.user(auth);
+app.use(auth);
 app.use("/api", (req, resp, next) => router(req,resp, next));
 app.use("/graphql", (req, resp, next) => graph(req, resp, next));
 
