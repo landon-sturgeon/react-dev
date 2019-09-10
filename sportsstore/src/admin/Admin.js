@@ -11,7 +11,7 @@ import { ProductCreator } from "./ProductCreator";
 import { AuthPrompt } from "../auth/AuthPrompt";
 import { authWrapper } from "../auth/AuthWrapper";
 
-export const Admin = authWrapper(class extends Component {
+export default authWrapper(class extends Component {
 
     constructor(props) {
         super(props);

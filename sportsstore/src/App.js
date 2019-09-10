@@ -3,12 +3,11 @@ import { SportsStoreDataStore } from "./data/DataStore";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import { ShopConnector } from "./connectors/ShopConnector";
-import { Admin } from "./admin/Admin";
 import { AuthProviderImpl } from "./auth/AuthProviderImpl";
 
 const Admin = lazy(() => import("./admin/Admin"));
 
-export default authWrapper(class extends Component {
+export default class App extends Component {
 
     render() {
         return (
@@ -21,7 +20,7 @@ export default authWrapper(class extends Component {
                                 routeProps =>
                                     <Suspense fallback={ <h3>Loading...</h3> }>
                                         <Admin { ...routeProps } />
-                                    </Suspense
+                                    </Suspense>
                                 } />
                             <Redirect to="/shop" />
                         </Switch>
@@ -30,4 +29,4 @@ export default authWrapper(class extends Component {
             </Provider>
         )
     }
-})
+}
