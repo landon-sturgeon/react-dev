@@ -2,16 +2,8 @@ const jwt = require("jsonwebtoken");
 
 const APP_SECRET = "myappsecret", USERNAME = "admin", PASSWORD = "secret";
 
-const anonOps = [
-    {
-        method: "GET",
-        urls: ["/api/products", "/api/categories"]
-    },
-    {
-        method: "POST",
-        urls: ["/api/orders"]
-    }
-]
+const anonOps = [{ method: "GET", urls: ["/api/products", "/api/categories"]},
+                 { method: "POST", urls: ["/api/orders"]}]
 
 module.exports = function (req, res, next) {
     if (anonOps.find(op => op.method === req.method
@@ -21,7 +13,7 @@ module.exports = function (req, res, next) {
         if (req.body.username === USERNAME && req.body.password === PASSWORD) {
             res.json({
                 success: true,
-                token: jwt.sign({ data: USERNAME, expiresIn: "1h"}, APP_SECRET)
+                token: jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET)
             });
         } else {
             res.json({ success: false });
@@ -29,9 +21,9 @@ module.exports = function (req, res, next) {
         res.end();
     } else {
         let token = req.headers["authorization"];
-        if (token != null && token.startWith("Bearer<")) {
+        if (token != null && token.startsWith("Bearer<")) {
             token = token.substring(7, token.length - 1);
-            jwt.verify(token, APP_SECRET)
+            jwt.verify(token, APP_SECRET);
             next();
         } else {
             res.statusCode = 401;
