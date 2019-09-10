@@ -1,7 +1,11 @@
 import { DataTypes } from "./Types";
 
+// const protocol = "http";
+// const hostname = "localhost";
+// const port = 3500;
+
 export const RestUrls = {
-    [DataTypes.Products]: `/api/products`,
+    [DataTypes.PRODUCTS]: `/api/products`,
     [DataTypes.CATEGORIES]: `/api/categories`,
     [DataTypes.ORDERS]: `/api/orders`
 }
