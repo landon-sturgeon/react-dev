@@ -1,13 +1,9 @@
-const messageFunction = (name, weather) => {
-    let message = "Hello, Landon.";
-    if (weather === "sunny") {
-        let message = "It is a nice day";
-        console.log(message);
-    } else {
-        let message = `It is ${ weather } today`;
-        console.log(message);
-    }
-    console.log(message);
+let myArray = [100, "Landon", true];
+
+for (let i = 0; i < myArray.length; i++) {
+    console.log(`Index: ${i}: ${myArray[i]}`);
 }
 
-messageFunction("Landon", "raining");
+console.log("---");
+
+myArray.forEach((value, index) => console.log(`Index: ${index}: ${value}`));
